@@ -1,0 +1,294 @@
+@startuml
+left to right direction
+title Switch Application - Use Case Diagram
+
+skinparam usecase {
+  BackgroundColor<<Main>> LightBlue
+  BackgroundColor<<Collaboration>> LightGreen
+  BackgroundColor<<Content>> LightYellow
+  BackgroundColor<<System>> LightGray
+}
+
+' ===== ACTORS =====
+actor User as "User"
+actor Guest as "Guest"
+actor System as "System"
+actor "External User" as ExternalUser
+actor "Board Collaborator" as Collaborator
+actor "Board Owner" as Owner
+
+User --|> Guest
+Collaborator --|> User
+Owner --|> Collaborator
+
+' ===== AUTHENTICATION PACKAGE =====
+rectangle "Authentication & User Management" {
+  usecase "Register Account" as UC1 <<Main>>
+  usecase "Login" as UC2 <<Main>>
+  usecase "Logout" as UC3 <<Main>>
+  usecase "Update Profile" as UC4 <<Main>>
+  usecase "Change Password" as UC5 <<Main>>
+  usecase "Reset Password" as UC6 <<Main>>
+  usecase "Deactivate Account" as UC7 <<Main>>
+  
+  Guest --> UC1
+  Guest --> UC2
+  User --> UC3
+  User --> UC4
+  User --> UC5
+  User --> UC6
+  User --> UC7
+}
+
+' ===== FRIENDS & COLLABORATION PACKAGE =====
+rectangle "Social & Collaboration" {
+  usecase "Search Users" as UC8 <<Collaboration>>
+  usecase "Send Friend Request" as UC9 <<Collaboration>>
+  usecase "Accept/Decline Friend Request" as UC10 <<Collaboration>>
+  usecase "Remove Friend" as UC11 <<Collaboration>>
+  usecase "View Friends List" as UC12 <<Collaboration>>
+  usecase "Share Board via Link" as UC13 <<Collaboration>>
+  usecase "Send Board Invitation" as UC14 <<Collaboration>>
+  
+  User --> UC8
+  User --> UC9
+  User --> UC10
+  User --> UC11
+  User --> UC12
+  Owner --> UC13
+  Owner --> UC14
+  ExternalUser --> UC14
+}
+
+' ===== BOARD MANAGEMENT PACKAGE =====
+rectangle "Board Management" {
+  usecase "Create Board" as UC15 <<Main>>
+  usecase "View Board" as UC16 <<Main>>
+  usecase "Edit Board Details" as UC17 <<Main>>
+  usecase "Delete Board" as UC18 <<Main>>
+  usecase "Archive/Restore Board" as UC19 <<Main>>
+  usecase "Change Board Visibility" as UC20 <<Main>>
+  usecase "Manage Board Members" as UC21 <<Collaboration>>
+  usecase "Set Board Permissions" as UC22 <<Collaboration>>
+  usecase "Reorder Sections" as UC23 <<Main>>
+  
+  Owner --> UC15
+  Owner --> UC16
+  Owner --> UC17
+  Owner --> UC18
+  Owner --> UC19
+  Owner --> UC20
+  Owner --> UC21
+  Owner --> UC22
+  Owner --> UC23
+  
+  Collaborator --> UC16
+  Collaborator --> UC21
+  Collaborator --> UC22
+}
+
+' ===== SECTION MANAGEMENT PACKAGE =====
+rectangle "Section Management" {
+  usecase "Create Section" as UC24 <<Main>>
+  usecase "Edit Section" as UC25 <<Main>>
+  usecase "Delete Section" as UC26 <<Main>>
+  usecase "Toggle Section Collapse" as UC27 <<Main>>
+  usecase "Set Section Permissions" as UC28 <<Collaboration>>
+  usecase "Create Notes Section" as UC29 <<Content>>
+  usecase "Create Tasks Section" as UC30 <<Content>>
+  
+  Collaborator --> UC24
+  Collaborator --> UC25
+  Collaborator --> UC26
+  Collaborator --> UC27
+  Collaborator --> UC28
+  Collaborator --> UC29
+  Collaborator --> UC30
+}
+
+' ===== NOTES MANAGEMENT PACKAGE =====
+rectangle "Notes Management" {
+  usecase "Create Note" as UC31 <<Content>>
+  usecase "Edit Note" as UC32 <<Content>>
+  usecase "Delete Note" as UC33 <<Content>>
+  usecase "View Note" as UC34 <<Content>>
+  usecase "Pin/Unpin Note" as UC35 <<Content>>
+  usecase "Archive Note" as UC36 <<Content>>
+  usecase "Search Notes" as UC37 <<Content>>
+  usecase "Filter Notes by Tags" as UC38 <<Content>>
+  usecase "Share Note" as UC39 <<Collaboration>>
+  usecase "View Note History" as UC40 <<Content>>
+  usecase "Revert to Previous Version" as UC41 <<Content>>
+  
+  Collaborator --> UC31
+  Collaborator --> UC32
+  Collaborator --> UC33
+  Collaborator --> UC34
+  Collaborator --> UC35
+  Collaborator --> UC36
+  Collaborator --> UC37
+  Collaborator --> UC38
+  Collaborator --> UC39
+  Collaborator --> UC40
+  Collaborator --> UC41
+  ExternalUser --> UC39
+}
+
+' ===== TASKS MANAGEMENT PACKAGE =====
+rectangle "Tasks Management" {
+  usecase "Create Task" as UC42 <<Content>>
+  usecase "Edit Task" as UC43 <<Content>>
+  usecase "Delete Task" as UC44 <<Content>>
+  usecase "View Task" as UC45 <<Content>>
+  usecase "Mark Task Complete/Incomplete" as UC46 <<Content>>
+  usecase "Assign Task" as UC47 <<Collaboration>>
+  usecase "Set Task Priority" as UC48 <<Content>>
+  usecase "Set Due Date" as UC49 <<Content>>
+  usecase "Add Subtask" as UC50 <<Content>>
+  usecase "Log Time" as UC51 <<Content>>
+  usecase "Add Comment" as UC52 <<Collaboration>>
+  usecase "Filter Tasks" as UC53 <<Content>>
+  usecase "Sort Tasks" as UC54 <<Content>>
+  usecase "View Task Statistics" as UC55 <<Content>>
+  
+  Collaborator --> UC42
+  Collaborator --> UC43
+  Collaborator --> UC44
+  Collaborator --> UC45
+  Collaborator --> UC46
+  Collaborator --> UC47
+  Collaborator --> UC48
+  Collaborator --> UC49
+  Collaborator --> UC50
+  Collaborator --> UC51
+  Collaborator --> UC52
+  Collaborator --> UC53
+  Collaborator --> UC54
+  Collaborator --> UC55
+}
+
+' ===== REAL-TIME COLLABORATION PACKAGE =====
+rectangle "Real-time Collaboration" {
+  usecase "Receive Real-time Updates" as UC56 <<System>>
+  usecase "See User Presence" as UC57 <<System>>
+  usecase "Live Cursor Tracking" as UC58 <<System>>
+  usecase "Instant Notification" as UC59 <<System>>
+  
+  Collaborator --> UC56
+  Collaborator --> UC57
+  Collaborator --> UC58
+  Collaborator --> UC59
+  System -- UC56
+  System -- UC57
+  System -- UC58
+  System -- UC59
+}
+
+' ===== SYSTEM AUTOMATION PACKAGE =====
+rectangle "System Automation" {
+  usecase "Auto-archive Completed Tasks" as UC60 <<System>>
+  usecase "Send Overdue Notifications" as UC61 <<System>>
+  usecase "Backup Data" as UC62 <<System>>
+  usecase "Cleanup Expired Links" as UC63 <<System>>
+  
+  System -- UC60
+  System -- UC61
+  System -- UC62
+  System -- UC63
+}
+
+' ===== INCLUDE/EXTEND RELATIONSHIPS =====
+
+' Authentication includes
+UC2 ..> UC1 : extends <<optional>>
+UC5 ..> UC2 : includes <<mandatory>>
+
+' Board relationships
+UC15 ..> UC2 : includes <<mandatory>>
+UC21 ..> UC8 : includes <<mandatory>>
+UC22 ..> UC21 : extends
+
+' Section relationships
+UC24 ..> UC29 : extends
+UC24 ..> UC30 : extends
+UC25 ..> UC24 : includes <<mandatory>>
+
+' Notes relationships
+UC31 ..> UC29 : includes <<mandatory>>
+UC32 ..> UC34 : includes <<mandatory>>
+UC40 ..> UC34 : extends
+
+' Tasks relationships
+UC42 ..> UC30 : includes <<mandatory>>
+UC46 ..> UC45 : includes <<mandatory>>
+UC47 ..> UC45 : extends
+UC50 ..> UC42 : extends
+
+' Sharing relationships
+UC39 ..> UC13 : uses
+UC14 ..> UC9 : similar to
+
+' System triggers
+UC61 ..> UC49 : triggers
+UC60 ..> UC46 : triggers
+
+' ===== GENERALIZATION =====
+' View operations generalization
+UC16 <.. (View Content) : <<generalize>>
+UC34 <.. (View Content) : <<generalize>>
+UC45 <.. (View Content) : <<generalize>>
+
+' Edit operations generalization
+UC17 <.. (Edit Content) : <<generalize>>
+UC25 <.. (Edit Content) : <<generalize>>
+UC32 <.. (Edit Content) : <<generalize>>
+UC43 <.. (Edit Content) : <<generalize>>
+
+' Delete operations generalization
+UC18 <.. (Delete Content) : <<generalize>>
+UC26 <.. (Delete Content) : <<generalize>>
+UC33 <.. (Delete Content) : <<generalize>>
+UC44 <.. (Delete Content) : <<generalize>>
+
+' ===== NOTES =====
+note right of UC2
+  Login required for all
+  main application features
+end note
+
+note bottom of UC21
+  Add/remove users
+  Change user roles
+  View member list
+end note
+
+note right of UC56
+  Real-time updates for:
+  - Board changes
+  - Note edits
+  - Task updates
+  - User presence
+end note
+
+note top of UC60
+  Automatic archiving based on
+  section settings and user
+  preferences
+end note
+
+' ===== PERMISSION CONSTRAINTS =====
+note left of Owner
+  Has all permissions including:
+  - Delete board
+  - Manage members
+  - Set permissions
+end note
+
+note right of Collaborator
+  Permissions vary by role:
+  - ADMIN: Full access
+  - EDITOR: Edit content
+  - VIEWER: Read only
+end note
+
+@enduml
