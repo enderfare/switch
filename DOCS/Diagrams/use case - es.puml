@@ -22,7 +22,7 @@ Collaborator --|> User
 Owner --|> Collaborator
 
 ' ===== AUTHENTICATION PACKAGE =====
-rectangle "Autenticacion & Maaanajo de Usuarios" {
+package "Autenticacion & Maaanajo de Usuarios" {
   usecase "Registrar Cuenta" as UC1 <<Main>>
   usecase "Login" as UC2 <<Main>>
   usecase "Logout" as UC3 <<Main>>
@@ -41,7 +41,7 @@ rectangle "Autenticacion & Maaanajo de Usuarios" {
 }
 
 ' ===== FRIENDS & Colaboracion PACKAGE =====
-rectangle "Social & Collaboracion" {
+package "Social & Collaboracion" {
   usecase "Buscar Users" as UC8 <<Colaboracion>>
   usecase "Enviar Solicitud de Amistad" as UC9 <<Colaboracion>>
   usecase "Aceptar/Rechazar Solicitud de Amigo" as UC10 <<Colaboracion>>
@@ -61,7 +61,7 @@ rectangle "Social & Collaboracion" {
 }
 
 ' ===== BOARD MANAGEMENT PACKAGE =====
-rectangle "Manejo Board" {
+package "Manejo Board" {
   usecase "Crear Board" as UC15 <<Main>>
   usecase "Ver Board" as UC16 <<Main>>
   usecase "Editar Board Details" as UC17 <<Main>>
@@ -88,7 +88,7 @@ rectangle "Manejo Board" {
 }
 
 ' ===== SECTION MANAGEMENT PACKAGE =====
-rectangle "Manejo de Secciones" {
+package "Manejo de Secciones" {
   usecase "Crear Seccion" as UC24 <<Main>>
   usecase "Editar Seccion" as UC25 <<Main>>
   usecase "Borrar Seccion" as UC26 <<Main>>
@@ -107,7 +107,7 @@ rectangle "Manejo de Secciones" {
 }
 
 ' ===== NOTES MANAGEMENT PACKAGE =====
-rectangle "Manejo de Notas" {
+package "Manejo de Notas" {
   usecase "Crear Nota" as UC31 <<Contenido>>
   usecase "Editar Nota" as UC32 <<Contenido>>
   usecase "Borrar Nota" as UC33 <<Contenido>>
@@ -135,7 +135,7 @@ rectangle "Manejo de Notas" {
 }
 
 ' ===== TASKS MANAGEMENT PACKAGE =====
-rectangle "Manejo de Tareas" {
+package "Manejo de Tareas" {
   usecase "Crear Tarea" as UC42 <<Contenido>>
   usecase "Editar Tarea" as UC43 <<Contenido>>
   usecase "Borrar Tarea" as UC44 <<Contenido>>
@@ -168,7 +168,7 @@ rectangle "Manejo de Tareas" {
 }
 
 ' ===== REAL-TIME Colaboracion PACKAGE =====
-rectangle "Colaboracion en tiempo real" {
+package "Colaboracion en tiempo real" {
   usecase "Reciviarupdates" as UC56 <<Sistema>>
   usecase "Ver presencia de usuario" as UC57 <<Sistema>>
   usecase "Trackeo de Cursor en vivo" as UC58 <<Sistema>>
@@ -185,7 +185,7 @@ rectangle "Colaboracion en tiempo real" {
 }
 
 ' ===== Sistema AUTOMATION PACKAGE =====
-rectangle "Automatizacion de sistema" {
+package "Automatizacion de sistema" {
   usecase "Auto-archivar Tareas Completadas" as UC60 <<Sistema>>
   usecase "Enviar notificaciones por no hacer tareas" as UC61 <<Sistema>>
   usecase "Hacer Backup de los datos" as UC62 <<Sistema>>

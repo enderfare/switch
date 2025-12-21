@@ -1,4 +1,4 @@
-@startuml
+@startuml 
 
 title Switch Application - Complete Class Diagram
 
@@ -39,6 +39,7 @@ class TaskSortOption <<enum>> {
     - password: String
     - avatar: String
     - createdAt: Date
+    - salt: String    
     - updatedAt: Date
     - lastLogin: Date
     - isActive: boolean

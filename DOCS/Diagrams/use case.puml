@@ -22,7 +22,7 @@ Collaborator --|> User
 Owner --|> Collaborator
 
 ' ===== AUTHENTICATION PACKAGE =====
-rectangle "Authentication & User Management" {
+package "Authentication & User Management" {
   usecase "Register Account" as UC1 <<Main>>
   usecase "Login" as UC2 <<Main>>
   usecase "Logout" as UC3 <<Main>>
@@ -41,7 +41,7 @@ rectangle "Authentication & User Management" {
 }
 
 ' ===== FRIENDS & COLLABORATION PACKAGE =====
-rectangle "Social & Collaboration" {
+package "Social & Collaboration" {
   usecase "Search Users" as UC8 <<Collaboration>>
   usecase "Send Friend Request" as UC9 <<Collaboration>>
   usecase "Accept/Decline Friend Request" as UC10 <<Collaboration>>
@@ -61,7 +61,7 @@ rectangle "Social & Collaboration" {
 }
 
 ' ===== BOARD MANAGEMENT PACKAGE =====
-rectangle "Board Management" {
+package "Board Management" {
   usecase "Create Board" as UC15 <<Main>>
   usecase "View Board" as UC16 <<Main>>
   usecase "Edit Board Details" as UC17 <<Main>>
@@ -88,7 +88,7 @@ rectangle "Board Management" {
 }
 
 ' ===== SECTION MANAGEMENT PACKAGE =====
-rectangle "Section Management" {
+package "Section Management" {
   usecase "Create Section" as UC24 <<Main>>
   usecase "Edit Section" as UC25 <<Main>>
   usecase "Delete Section" as UC26 <<Main>>
@@ -107,7 +107,7 @@ rectangle "Section Management" {
 }
 
 ' ===== NOTES MANAGEMENT PACKAGE =====
-rectangle "Notes Management" {
+package "Notes Management" {
   usecase "Create Note" as UC31 <<Content>>
   usecase "Edit Note" as UC32 <<Content>>
   usecase "Delete Note" as UC33 <<Content>>
@@ -135,7 +135,7 @@ rectangle "Notes Management" {
 }
 
 ' ===== TASKS MANAGEMENT PACKAGE =====
-rectangle "Tasks Management" {
+package "Tasks Management" {
   usecase "Create Task" as UC42 <<Content>>
   usecase "Edit Task" as UC43 <<Content>>
   usecase "Delete Task" as UC44 <<Content>>
@@ -168,7 +168,7 @@ rectangle "Tasks Management" {
 }
 
 ' ===== REAL-TIME COLLABORATION PACKAGE =====
-rectangle "Real-time Collaboration" {
+package "Real-time Collaboration" {
   usecase "Receive Real-time Updates" as UC56 <<System>>
   usecase "See User Presence" as UC57 <<System>>
   usecase "Live Cursor Tracking" as UC58 <<System>>
@@ -185,7 +185,7 @@ rectangle "Real-time Collaboration" {
 }
 
 ' ===== SYSTEM AUTOMATION PACKAGE =====
-rectangle "System Automation" {
+package "System Automation" {
   usecase "Auto-archive Completed Tasks" as UC60 <<System>>
   usecase "Send Overdue Notifications" as UC61 <<System>>
   usecase "Backup Data" as UC62 <<System>>
